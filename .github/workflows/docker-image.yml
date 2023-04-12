@@ -30,8 +30,10 @@ jobs:
     - name: Build Image
       run: |
         docker build -t juanfalcon/docker-graphql-example:0.0.1 .
+        docker build -t juanfalcon/docker-graphql-example .
         
     - name: Push Image
       run: |
         docker push juanfalcon/docker-graphql-example:0.0.1
+        docker push juanfalcon/docker-graphql-example
     
