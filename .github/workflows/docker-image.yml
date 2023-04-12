@@ -13,6 +13,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: Checkout Code
+      uses: actions/checkout@v3
+      with:
+        fetch-option: 0
+        
+    - name: Docker Login
+      env:
+        DOCKER_USER: ${{DOCKER_USER}}
+        DOCKER_PASSWORD: ${{DOCKER_PASSWORD}}
+      run: |
+        echo "[Start Login]"
+        echo docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+        echo "[End Login]"
+      
+    
