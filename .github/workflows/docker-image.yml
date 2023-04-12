@@ -26,5 +26,12 @@ jobs:
         echo "[Start Login]"
         echo docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         echo "[End Login]"
-      
+        
+    - name: Build Image
+      run: |
+        echo docker build -t juanfalcon/docker-graphql-example:0.0.1 .
+        
+    - name: Push Image
+      run: |
+        echo docker push juanfalcon/docker-graphql-example:0.0.1
     
