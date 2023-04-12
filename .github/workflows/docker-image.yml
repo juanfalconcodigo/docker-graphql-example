@@ -37,13 +37,17 @@ jobs:
         echo "New Version: $NEW_VERSION"
         echo "[End Login]"
         
-#     - name: Build Image
-#       run: |
-#         docker build -t juanfalcon/docker-graphql-example:0.0.1 .
-#         docker build -t juanfalcon/docker-graphql-example .
+    - name: Build Image
+      env:
+        NEW_VERSION: ${{steps.version.outputs.version}}
+      run: |
+        docker build -t juanfalcon/docker-graphql-example:$NEW_VERSION .
+        docker build -t juanfalcon/docker-graphql-example:latest .
         
-#     - name: Push Image
-#       run: |
-#         docker push juanfalcon/docker-graphql-example:0.0.1
-#         docker push juanfalcon/docker-graphql-example
+    - name: Push Image
+      env:
+        NEW_VERSION: ${{steps.version.outputs.version}}
+      run: |
+        docker push juanfalcon/docker-graphql-example:$NEW_VERSION
+        docker push juanfalcon/docker-graphql-example:latest
     
